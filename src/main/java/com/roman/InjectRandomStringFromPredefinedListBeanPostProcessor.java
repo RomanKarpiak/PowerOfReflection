@@ -9,18 +9,18 @@ import java.util.Random;
 
 public class InjectRandomStringFromPredefinedListBeanPostProcessor implements BeanPostProcessor {
 
+
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
         Field[] fields = bean.getClass().getDeclaredFields();
         for (Field field:fields){
             InjectRandomString annotation = field.getAnnotation(InjectRandomString.class);
             if(annotation != null){
-                int min = annotation.min();
-                int max = annotation.max();
+               String [] rows = annotation.rows();
                 Random random = new Random();
-                int i = min + random.nextInt(max - min);
+                int i = random.nextInt(rows.length);
                 field.setAccessible(true);
-                ReflectionUtils.setField(field,bean,i);
+                ReflectionUtils.setField(field,bean,rows[i]);
             }
         }
         return bean;

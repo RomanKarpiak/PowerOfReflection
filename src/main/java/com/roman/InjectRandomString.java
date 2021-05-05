@@ -5,6 +5,5 @@ import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.RUNTIME)
 public @interface InjectRandomString {
-    int min();
-    int max();
+    String[] rows();
 }

@@ -2,9 +2,8 @@ package com.roman;
 
 public class Twitter implements Quoter {
 
-    @InjectRandomString(min = 2, max = 7)
-    private int repeat;
 
+    @InjectRandomString(rows = {"Row1", "Row2", "Row3", "Row4","Row5","Row6"})
     private String message;
 
     public Twitter() {
@@ -16,10 +15,7 @@ public class Twitter implements Quoter {
 
     @Override
     public void sayQuote() {
-
-        for (int i = 0; i < repeat;i++) {
-
-            System.out.println("message = " + message);
-        }
+        System.out.println("message = " + message);
     }
 }
+
