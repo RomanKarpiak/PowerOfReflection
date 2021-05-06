@@ -1,7 +1,10 @@
 package com.roman;
 
+
+
 import javax.annotation.PostConstruct;
 
+@Profiling
 public class Twitter implements Quoter {
 
     @InjectRandomInt(min = 1, max = 7)
