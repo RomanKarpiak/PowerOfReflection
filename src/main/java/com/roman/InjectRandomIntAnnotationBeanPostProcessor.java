@@ -7,22 +7,23 @@ import org.springframework.util.ReflectionUtils;
 import java.lang.reflect.Field;
 import java.util.Random;
 
-public class InjectRandomStringFromPredefinedListBeanPostProcessor implements BeanPostProcessor {
-
-
+public class InjectRandomIntAnnotationBeanPostProcessor implements BeanPostProcessor {
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
         Field[] fields = bean.getClass().getDeclaredFields();
-        for (Field field : fields) {
-            InjectRandomString annotation = field.getAnnotation(InjectRandomString.class);
-            if (annotation != null) {
-                String[] rows = annotation.rows();
+        for (Field field:fields) {
+            InjectRandomInt annotation = field.getAnnotation(InjectRandomInt.class);
+            if(annotation != null){
+                int min = annotation.min();
+                int max = annotation.max();
                 Random random = new Random();
-                int i = random.nextInt(rows.length);
+                int i = min + random.nextInt(max - min);
                 field.setAccessible(true);
-                ReflectionUtils.setField(field, bean, rows[i]);
+                ReflectionUtils.setField(field,bean,i);
             }
+
         }
+
         return bean;
     }
 
