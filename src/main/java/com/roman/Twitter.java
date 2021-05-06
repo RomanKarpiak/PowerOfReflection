@@ -16,7 +16,7 @@ public class Twitter implements Quoter {
     @PostConstruct
     public void init() {
         System.out.println("Phase2");
-        System.out.println(repeat);
+        System.out.println(repeat );
     }
 
     public Twitter() {
@@ -29,7 +29,10 @@ public class Twitter implements Quoter {
     }
 
     @Override
+    @PostConstruct
+    @PostProxy
     public void sayQuote() {
+        System.out.println("Proxy3....");
         for (int i = 0; i < repeat; i++) {
             System.out.println("message = " + message);
         }

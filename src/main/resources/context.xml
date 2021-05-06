@@ -8,6 +8,7 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
     <context:annotation-config/>
 
+    <bean class="com.roman.ProfilingHandlerBeanPostProcessor"/>
     <bean class="com.roman.InjectRandomStringFromPredefinedListBeanPostProcessor"/>
     <bean class="com.roman.InjectRandomIntAnnotationBeanPostProcessor"/>
     <bean id="Twitter" class="com.roman.Twitter">
